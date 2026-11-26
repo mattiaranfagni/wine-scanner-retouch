@@ -31,23 +31,23 @@
     
     <div class="row">
         <div class="card w-100">
-            <div class="card-header"><h4 class="card-title">Addestramento del modello nuovo</h4></div>
+            <div class="card-header">            <h4 class="card-title">Training a new model</h4></div>
             <div class="card-body">
-                <p class="pb-1 text-justify">Seleziona i parametri da utilizzare nella regressione lineare.</p>
+                            <p class="pb-1 text-justify">Select the parameters to use in the linear regression.</p>
                 <form id="training-form" action="{% url 'MontalcinoForecastsApp:complete' %}" method="post">
                     {% csrf_token %}
-                    <h6>Scegli un range di date:</h6>
+                    <h6>Choose a date range:</h6>
                     <div class="d-flex flex-row flex-wrap pb-3">
                         <div>
-                            <label class="m-2" for="startDate">Inizio: </label>
-                            <input class="date-input readonly" type="text" id="startDate" placeholder="gg/mm/aaaa" name="startDate" required>
+                            <label class="m-2" for="startDate">Start: </label>
+                            <input class="date-input readonly" type="text" id="startDate" placeholder="dd/mm/yyyy" name="startDate" required>
                         </div>
                         <div>
-                            <label class="m-2" for="endDate">Fine: </label>
-                            <input class="date-input readonly" type="text" id="endDate" placeholder="gg/mm/aaaa" name="endDate" required>
+                            <label class="m-2" for="endDate">End: </label>
+                            <input class="date-input readonly" type="text" id="endDate" placeholder="dd/mm/yyyy" name="endDate" required>
                         </div>
                     </div>
-                    <h6>Scegli gli indici bioclimatici:</h6>
+                    <h6>Choose the bioclimatic indices:</h6>
                     <div class="d-flex flex-row flex-wrap pb-3">
                         {% for regr in form_regressors %}
                         <div class="form-check">
@@ -64,7 +64,7 @@
 
     <div class="row">
         {%if err_msg %}
-        <div class="alert alert-danger" role="alert">Errore: {{ err_msg }}</div>
+        <div class="alert alert-danger" role="alert">Error: {{ err_msg }}</div>
         {% endif %}
     </div>
     
@@ -75,23 +75,23 @@
         <div class="col-lg-4 pl-0 under-lg-pr-0 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-header">
-                    <h4 class="card-title">Risultati</h4>
-                    <h6>Regressione lineare</h6>
+                    <h4 class="card-title">Results</h4>
+                    <h6>Linear regression</h6>
                 </div>
                 <div class="card-body">
                     <div class="py-1">
-                        Periodo: <span class="numbers">{{ start_train_date }}</span> - <span class="numbers">{{ end_train_date }}</span>
+                        Period: <span class="numbers">{{ start_train_date }}</span> - <span class="numbers">{{ end_train_date }}</span>
                     </div>
-                    <div class="py-1">N. annate: <span class="numbers" id="vintages"></span></div>
-                    <div class="py-1">N. regressori: <span class="numbers">{{ regr_count }}</span></div>
+                    <div class="py-1">No. of vintages: <span class="numbers" id="vintages"></span></div>
+                    <div class="py-1">No. of regressors: <span class="numbers">{{ regr_count }}</span></div>
                     <div class="py-1">R<sup>2</sup>: <span class="numbers">{{ r2|floatformat:2 }}</span></div>
-                    <div class="py-1">R<sup>2</sup> aggiustato: <span class="numbers">{{ adj_r2|floatformat:2 }}</span></div>
+                    <div class="py-1">Adjusted R<sup>2</sup>: <span class="numbers">{{ adj_r2|floatformat:2 }}</span></div>
                 </div>
             </div>
         </div>
         <div class="col-lg-8 pr-0 under-lg-pl-0">
             <div class="card">
-                <div class="card-header"><h4 class="card-title">Confronto tra qualità predetta e reale</h4></div>
+                <div class="card-header"><h4 class="card-title">Predicted vs. actual quality</h4></div>
                 <div class="card-body">
                     <div id="chart">{{ chart_out|safe }}</div>
                 </div>
@@ -108,8 +108,8 @@
                     <h6>{{ regr }}</h6>
                 </div>
                 <div class="card-body">
-                    <p>Coefficiente: <span class="numbers">{{ coef|floatformat:4 }}</span></p>
-                    <p>Valore p: <span class="numbers">{{ pval|floatformat:2 }}</span></p>
+                    <p>Coefficient: <span class="numbers">{{ coef|floatformat:4 }}</span></p>
+                    <p>p-value: <span class="numbers">{{ pval|floatformat:2 }}</span></p>
                 </div>
             </div>
         </div>
@@ -118,11 +118,11 @@
 
     <div class="row">
         <div class="card w-100">
-            <div class="card-header pb-0"><h4 class="card-title">Previsioni</h4></div>
+            <div class="card-header pb-0">            <h4 class="card-title">Forecasts</h4></div>
             <div class="card-body pt-0">
                 <form id="forecast-form" action="" method="post">
-                    <label for="forecastYear">Scegli l'anno su cui vuoi fare la previsione: </label>
-                    <input class="date-input readonly" type="text" id="forecastYear" placeholder="aaaa" name="forecastYear" required>
+                                <label for="forecastYear">Choose the year you want to forecast: </label>
+                                <input class="date-input readonly" type="text" id="forecastYear" placeholder="yyyy" name="forecastYear" required>
                     <br>
                     <button class="btn btn-purple mb-4 mt-2" type="submit">Ok</button>
                 </form>

@@ -85,7 +85,7 @@ class WinklerIndex(ClimaticIndex):
     def save(self, *args, **kwargs):
         queryset = WinklerIndex.objects.all()
         if not queryset:
-            self.sensor = Sensor.objects.get(name="Temperatura aria")
+            self.sensor = Sensor.objects.get(name="Air temperature")
             super(ClimaticIndex, self).save(*args, **kwargs)
 
     def get_list(self, start_date, end_date):
@@ -115,7 +115,7 @@ class HuglinIndex(ClimaticIndex):
     def save(self, *args, **kwargs):
         queryset = HuglinIndex.objects.all()
         if not queryset:
-            self.sensor = Sensor.objects.get(name="Temperatura aria")
+            self.sensor = Sensor.objects.get(name="Air temperature")
             super(ClimaticIndex, self).save(*args, **kwargs)
 
     def get_list(self, start_date, end_date):

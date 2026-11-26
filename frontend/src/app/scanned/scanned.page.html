@@ -1,7 +1,7 @@
 <ion-header>
   <nav class="red darken-4">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Preferiti</a>
+      <a href="#" class="brand-logo center">Favourites</a>
     </div>
   </nav>
 </ion-header>
@@ -11,17 +11,17 @@
   </ion-refresher>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Qui troverai i tuoi vini preferiti.</ion-card-title>
+      <ion-card-title>Here you will find your favourite wines.</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Scannerizza i QR Code dei tuoi vini e aggiungili tra i preferiti. Potrai rivedere le informazioni relative ad essi senza aver bisogno di effettuare nuovamente la scansione.
+      Scan the QR Codes of your wines and add them to your favourites. You will be able to review their information without having to scan again.
     </ion-card-content>
   </ion-card>
   <ng-container *ngIf="data_list.length == 0">
     <ion-list>
       <ion-list-header>
         <ion-title>
-          In attesa di una scansione...
+          Waiting for a scan...
         </ion-title>
       </ion-list-header>
       <ion-item>
@@ -151,7 +151,7 @@
         </ion-item>
        
         <ion-item-options>
-           <button ion-button expandable (click)="remove(data.year)" color="danger">Rimuovi</button>
+           <button ion-button expandable (click)="remove(data.year)" color="danger">Remove</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

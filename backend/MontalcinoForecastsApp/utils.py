@@ -61,8 +61,8 @@ def create_quality_chart(x, y):
 
     data_source = {}
     data_source['chart'] = {
-        "xAxisName": "Qualità reale",
-        "yAxisName": "Qualità predetta",
+        "xAxisName": "Actual quality",
+        "yAxisName": "Predicted quality",
         "xAxisMinValue": 1,
         "yAxisMinValue": 1,
         "xAxisMaxValue": 5,
@@ -70,7 +70,7 @@ def create_quality_chart(x, y):
         "theme": "candy",
         "showLegend": 0,
         "bgColor": "#27293d",
-        "plotToolText": "<b>Qualità predetta:</b> $yDataValue<br><b>Qualità reale:</b> $xDataValue",
+        "plotToolText": "<b>Predicted quality:</b> $yDataValue<br><b>Actual quality:</b> $xDataValue",
     }
     data_source['categories'] = [
         {

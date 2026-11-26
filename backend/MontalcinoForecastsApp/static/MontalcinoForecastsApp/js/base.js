@@ -36,7 +36,7 @@ function activateSubmitButton(sel) {
 
 function deactivateSubmitButton(sel) {
     $(sel).attr('disabled', true);
-    $(sel).html('<span class="loading"><i class="fa fa-spinner fa-spin mr-2"></i>Caricamento</span>');
+    $(sel).html('<span class="loading"><i class="fa fa-spinner fa-spin mr-2"></i>Loading</span>');
 };
 
 function resetForecastsResults() {
@@ -63,7 +63,7 @@ function ajaxForecast(postData, limitQuality) {
             resetForecastsResults();
             activateSubmitButton("#forecast-form button[type=submit]");
             if (data["err_msg"]) {
-                $("#forecast-error").html('<div class="alert alert-danger" role="alert">Errore: ' + data["err_msg"] + '</div>');
+                $("#forecast-error").html('<div class="alert alert-danger" role="alert">Error: ' + data["err_msg"] + '</div>');
             } else {
                 $("#forecast-error").html('');
                 floatQuality = data["quality"];
@@ -77,14 +77,14 @@ function ajaxForecast(postData, limitQuality) {
                 };
                 intQuality = Math.round(floatQuality);
                 setStars(intQuality);
-                $("#forecast-results").html('<div>Anno: <span class="numbers">' + $("#forecastYear").val() + '</span></div><div>Qualità prevista per il Brunello di Montalcino: <span class="numbers">' + floatQuality + '</span></div>');
+                $("#forecast-results").html('<div>Year: <span class="numbers">' + $("#forecastYear").val() + '</span></div><div>Predicted quality for Brunello di Montalcino: <span class="numbers">' + floatQuality + '</span></div>');
             };
             console.log(data);
         },
         error: function(data) {
             resetForecastsResults();
             activateSubmitButton("#forecast-form button[type=submit]");
-            $("#forecast-error").html('<div class="alert alert-danger" role="alert">Errore: durante la comunicazione con il server.</div>');
+            $("#forecast-error").html('<div class="alert alert-danger" role="alert">Error: while communicating with the server.</div>');
         }
     });
 };

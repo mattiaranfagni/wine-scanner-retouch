@@ -63,6 +63,11 @@ Mattia Ranfagni added the `MontalcinoForecastsApp` and `WinePredictionREST` apps
 - Backend: updated dependencies, decoupled from TensorFlow 1.14 (now optional, see `requirements-ml.txt`),
   compatible with Python 3.9–3.11 and Django 3.2; `SECRET_KEY`, `DEBUG` and allowed hosts configurable through
   environment variables; database shipped compressed (`WineDB.sqlite3.gz`).
+- Everything translated to English: UI texts, API error messages and labels, templates, comments, response keys
+  (`umidlugott`/`umidaprott`/`ventoaprott` are now `avg_humidity_jul_oct`/`avg_humidity_apr_oct`/`avg_wind_speed_apr_oct`),
+  the sensor and climatic index names stored in the database (e.g. `Temperatura aria` → `Air temperature`,
+  `Indice di Winkler` → `Winkler Index`) and the LSTM model file names derived from them. The Ionic project was renamed
+  from `arrQRViniIonic` to `wine-scanner`. The remote weather API's Italian XML tags/attributes are left untouched.
 - Frontend: backend URL moved to `environment.ts` (it was a hardcoded LAN IP), manual vintage-year entry when the
   scanner is unavailable (browser), cleartext HTTP traffic enabled on Android.
 

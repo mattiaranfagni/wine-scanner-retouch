@@ -8,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TabsPage implements OnInit {
 
   constructor() { }
-  ciao() {
-    console.log('ciao!');
-  }
+
   ngOnInit() {
   }
 

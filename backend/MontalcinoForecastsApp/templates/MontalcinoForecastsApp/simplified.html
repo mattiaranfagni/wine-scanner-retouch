@@ -17,19 +17,19 @@
 <div class="container">
     <div class="row">
         <div class="card w-100">
-            <div class="card-header"><h4 class="card-title">Addestramento del modello</h4></div>
+            <div class="card-header">            <h4 class="card-title">Training the model</h4></div>
             <div class="card-body">
                 <form id="train-form" action="" method="post">
-                    <h6>Scegli un range di date:</h6>
-                    <p class="pb-1 text-justify">Il periodo scelto determina i dati utilizzati per addestrare i modelli.</p>
+                                <h6>Choose a date range:</h6>
+                                <p class="pb-1 text-justify">The chosen period determines the data used to train the models.</p>
                     <div class="d-flex flex-row flex-wrap pb-3">
                         <div>
-                            <label class="m-2" for="startDate">Inizio: </label>
-                            <input class="date-input readonly" type="text" id="startDate" placeholder="gg/mm/aaaa" name="startDate" required>
+                                        <label class="m-2" for="startDate">Start: </label>
+                                        <input class="date-input readonly" type="text" id="startDate" placeholder="dd/mm/yyyy" name="startDate" required>
                         </div>
                         <div>
-                            <label class="m-2" for="endDate">Fine: </label>
-                            <input class="date-input readonly" type="text" id="endDate" placeholder="gg/mm/aaaa" name="endDate" required>
+                                        <label class="m-2" for="endDate">End: </label>
+                                        <input class="date-input readonly" type="text" id="endDate" placeholder="dd/mm/yyyy" name="endDate" required>
                         </div>
                     </div>
                     <button class="btn btn-purple" type="submit">Ok</button>
@@ -44,10 +44,10 @@
         <div class="col-lg-6 pl-0 under-lg-pr-0">
             <div class="card w-100">
                 <div class="card-header">
-                    <h4 class="card-title">Selezione del modello</h4>
+                    <h4 class="card-title">Model selection</h4>
                 </div>
                 <div class="card-body">
-                    <p class="pb-1 text-justify">Elenco delle migliori combinazioni di indici climatici, in ordine decrescente di accuratezza. Seleziona quella che preferisci.</p>
+                                        <p class="pb-1 text-justify">List of the best combinations of climatic indices, in descending order of accuracy. Select the one you prefer.</p>
                     <div class="list-group"></div>
                 </div>
             </div>
@@ -55,11 +55,11 @@
         
         <div class="col-lg-6 pr-0 under-lg-pl-0 d-flex">
             <div class="card w-100 flex-grow-1">
-                <div class="card-header pb-0"><h4 class="card-title">Previsioni</h4></div>
+                <div class="card-header pb-0">                <h4 class="card-title">Forecasts</h4></div>
                 <div class="card-body pt-0">
                     <form id="forecast-form" action="" method="post">
-                        <label for="forecastYear">Scegli l'anno su cui vuoi fare la previsione: </label>
-                        <input class="date-input readonly" type="text" id="forecastYear" placeholder="aaaa" name="forecastYear" required>
+                                        <label for="forecastYear">Choose the year you want to forecast: </label>
+                                        <input class="date-input readonly" type="text" id="forecastYear" placeholder="yyyy" name="forecastYear" required>
                         <br>
                         <button class="btn btn-purple mb-4 mt-2" type="submit">Ok</button>
                     </form>
@@ -91,7 +91,7 @@
         </div>
     </div>
     
-    <!-- Modal per l'indice GST -->
+    <!-- Modal for the GST index -->
     <div class="modal fade" id="gst-modal" tabindex="-1" role="dialog" aria-labelledby="gst-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -99,46 +99,46 @@
                     <h5 class="modal-title" id="gst-modal-label">GST (Growing Season Temperature)</h5>
                 </div>
                 <div class="modal-body">
-                    É la temperatura media del periodo vegetativo della vite ovvero aprile-ottobre.
+                    The average temperature of the vine's growing season, i.e. April-October.
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Maggiori dettagli</a>
+                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">More details</a>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Modal per l'indice di Winkler -->
+    <!-- Modal for the Winkler index -->
     <div class="modal fade" id="winkler-modal" tabindex="-1" role="dialog" aria-labelledby="winkler-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="winkler-modal-label">Indice di Winkler</h5>
+                    <h5 class="modal-title" id="winkler-modal-label">Winkler Index</h5>
                 </div>
                 <div class="modal-body">
-                    Considerando le temperature medie giornaliere tra aprile e ottobre superiori a 10&deg;C, l'indice di Winkler è la somma delle differenze tra queste temperature e 10&deg;C.
+                    Considering the daily average temperatures between April and October above 10&deg;C, the Winkler index is the sum of the differences between these temperatures and 10&deg;C.
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Maggiori dettagli</a>
+                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">More details</a>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Modal per l'indice di Huglin -->
+    <!-- Modal for the Huglin index -->
     <div class="modal fade" id="huglin-modal" tabindex="-1" role="dialog" aria-labelledby="huglin-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="huglin-modal-label">Indice di Huglin</h5>
+                    <h5 class="modal-title" id="huglin-modal-label">Huglin Index</h5>
                 </div>
                 <div class="modal-body">
-                    É il prodotto tra un coefficiente K, dipendente dalla latitudione e pari a 1.03 per Montalcino, e la somma tra aprile e settembre della media tra temperatura media giornaliera e temperatura massima giornaliera meno 10&deg;C.
+                    The product of a coefficient K, which depends on latitude and equals 1.03 for Montalcino, and the sum, from April to September, of the mean of the daily average temperature and the daily maximum temperature minus 10&deg;C.
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Maggiori dettagli</a>
+                    <a href="{% url 'MontalcinoForecastsApp:help' %}#indices" class="btn btn-primary" target="_blank" rel="noopener noreferrer">More details</a>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 </div>
             </div>

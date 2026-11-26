@@ -34,17 +34,17 @@ export class WineresultPage implements OnInit {
   } 
 
   public info() {
-    let info = '<div class="container"><p>La qualit&agrave; del vino, la sua longevit&agrave; e le sue caratteristiche possono variare, anche sensibilmente, nelle singole annate.'+
-    "Risulta fondamentale, a tal proposito, l’andamento climatico durante la fase vegetativa (aprile-settembre).</p>"+
-    "<h2>Come mai &egrave; importante l’umidit&agrave; per determinare la qualit&agrave; del vino?</h2>"+
-    "<p> Il clima influisce sul vitigno e sul suo sviluppo durante la fase vegetativa della vite, che spesso va dalla met&agrave; del mese di aprile fino alla met&agrave; del mese di settembre."+
-    " &Egrave; utile misurare l’umidit&agrave; del terreno del vitigno, dato che le piogge della fase primaverile sono utili per l’accumulo di acqua a livello dell’apparato radicale. "+
-    "Questo permette alla pianta di sviluppare bene la prima fase della vegetazione. Successivamente – nei mesi estivi – la pianta ha un progressivo rallentamento vegetativo, dato che i terreni tendono a perdere le riserve idriche a causa della relativa scarsa piovosit&agrave;. </p>"+
-    "<h2>Come mai &egrave; importante la velocit&agrave; del vento per determinare la qualit&agrave; del vino?</h2>"+
-    "<p> L’effetto dei venti varia in funzione della loro intensit&agrave; e della loro provenienza. Venti freschi e non violenti nei periodi più caldi possono alleviare l’ eccessivo calore."+
-    " Venti caldi nei periodi più caldi possono aggravare l’eventuale stress calorico della pianta. "+
-    " In generale le brezze sono comunque favorevoli perch&eacute; limitano l’attivit&agrave; di alcuni parassiti e regolano il livello di umidit&agrave; nell’aria, "+
-    "scongiurando pericolosi ammuffimenti durante il periodo della fioritura. </p> </div>";
+    let info = '<div class="container"><p>The quality of a wine, its longevity and its characteristics can vary, even significantly, from one vintage to another. '+
+    "In this regard, the weather during the growing season (April–September) is essential.</p>"+
+    "<h2>Why is humidity important in determining wine quality?</h2>"+
+    "<p> The climate affects the vine and its development during the vegetative phase, which usually runs from mid-April to mid-September."+
+    " It is useful to measure the soil humidity of the vineyard, since the spring rains help the roots accumulate water. "+
+    "This allows the plant to develop well in the first phase of vegetation. Later, in the summer months, the plant gradually slows down, since the soil tends to lose its water reserves because of the relatively scarce rainfall. </p>"+
+    "<h2>Why is wind speed important in determining wine quality?</h2>"+
+    "<p> The effect of wind varies with its intensity and its origin. Cool, gentle winds in the hottest periods can relieve excessive heat."+
+    " Hot winds in the hottest periods can worsen any heat stress on the plant. "+
+    " In general, breezes are favourable because they limit the activity of some parasites and regulate the humidity of the air, "+
+    "preventing dangerous mould during the flowering period. </p> </div>";
     this.showAlert(info);
   } 
 
@@ -58,7 +58,7 @@ export class WineresultPage implements OnInit {
       cssClass: 'info-alert',
       header: 'FAQ',
       message: msg,
-      buttons: ['Ho capito.']
+      buttons: ['Got it.']
     });
     alert.present();
   }

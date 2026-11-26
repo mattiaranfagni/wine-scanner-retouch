@@ -1,6 +1,6 @@
 {
   "appId": "com.example.app",
-  "appName": "arrQRViniIonic",
+  "appName": "wine-scanner",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -21,9 +21,9 @@ def winegetForApi(request):
             result = ajax_get_forecast(request,start_date_str,end_date_str,regr_combo)
             result_content = json.loads(str(result.content)[2:-1])
             print()
-            result_content["umidlugott"] = round((DailyData.objects.filter(sensor=2,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-07-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
-            result_content["umidaprott"] = round((DailyData.objects.filter(sensor=2,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-04-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
-            result_content["ventoaprott"] = round((DailyData.objects.filter(sensor=7,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-04-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
+            result_content["avg_humidity_jul_oct"] = round((DailyData.objects.filter(sensor=2,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-07-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
+            result_content["avg_humidity_apr_oct"] = round((DailyData.objects.filter(sensor=2,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-04-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
+            result_content["avg_wind_speed_apr_oct"] = round((DailyData.objects.filter(sensor=7,date__range=(str(2005 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-04-01', str(2015 if int(forecast_year)-1 == 2004 else int(forecast_year)-1)+'-10-01')).aggregate(Avg('avg')))["avg__avg"], 2)
             return JsonResponse(result_content)
         except (json.JSONDecodeError):
             regr_combo = content["results"][0]["regr_combo"]

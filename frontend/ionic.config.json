@@ -1,5 +1,5 @@
 {
-  "name": "arrQRViniIonic",
+  "name": "wine-scanner",
   "integrations": {
     "cordova": {},
     "capacitor": {}

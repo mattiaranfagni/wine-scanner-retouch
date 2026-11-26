@@ -41,7 +41,7 @@ export class DiscoverPage implements OnInit {
       console.log('Barcode data', barcodeData);
       if(isNaN(Number(barcodeData.text)))
       {
-        this.showAlert("Il QR Code scannerizzato non è valido, riprova con un altro QR Code.");
+        this.showAlert("The scanned QR Code is not valid, please try another QR Code.");
       }
       else {
         this.getForecast(barcodeData.text);
@@ -55,7 +55,7 @@ export class DiscoverPage implements OnInit {
 
   async getForecast(year) {
     const loading = await this.loadingController.create({
-      message: 'Scanning in corso...'
+      message: 'Scanning...'
     });
     /*this.http.request(year).subscribe(data => {
       data.name= 'Brunello Di Montalcino';
@@ -86,7 +86,7 @@ export class DiscoverPage implements OnInit {
     (error) => {
       console.error(error);
       loading.dismiss();
-      this.showAlert("C'è stato un errore sull'invio della richiesta del vino scelto. Riprova lo scan.");
+      this.showAlert("There was an error sending the request for the chosen wine. Please scan again.");
     });
     loading.present();
   }
@@ -105,7 +105,7 @@ export class DiscoverPage implements OnInit {
   async showAlert(msg:any) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Errore',
+      header: 'Error',
       message: msg,
       buttons: ['OK']
     });
@@ -115,12 +115,12 @@ export class DiscoverPage implements OnInit {
   // Browser fallback: no camera/barcode plugin, so the vintage year is typed by hand.
   async askYear() {
     const alert = await this.alertController.create({
-      header: 'Annata',
-      message: 'Lo scanner è disponibile solo su dispositivo. Inserisci l\'annata da analizzare.',
+      header: 'Vintage',
+      message: 'The scanner is only available on a device. Enter the vintage year to analyse.',
       inputs: [{ name: 'year', type: 'number', placeholder: '2019', min: 2005, max: 2025 }],
       buttons: [
-        { text: 'Annulla', role: 'cancel' },
-        { text: 'Analizza', handler: data => { if (data.year) { this.getForecast(data.year); } } }
+        { text: 'Cancel', role: 'cancel' },
+        { text: 'Analyse', handler: data => { if (data.year) { this.getForecast(data.year); } } }
       ]
     });
     alert.present();

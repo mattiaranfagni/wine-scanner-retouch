@@ -15,11 +15,11 @@ startDate=01/01/2006&endDate=01/01/2019&forecastYear=2019
 Response (example):
 
 ```json
-{"quality": 5.26, "r2_adj": 0.22, "regr_combo": [4, 6, 10], "regr_list": ["..."],
- "umidlugott": 64.48, "umidaprott": 67.61, "ventoaprott": 0.94}
+{"quality": 5.26, "r2_adj": 0.22, "regr_combo": [4, 6, 10], "regr_list": ["Average humidity between April and October", "..."],
+ "avg_humidity_jul_oct": 64.48, "avg_humidity_apr_oct": 67.61, "avg_wind_speed_apr_oct": 0.94}
 ```
 
-(`regr_list` entries are Italian labels, e.g. "Umidità media tra aprile e ottobre".)
+`regr_list` contains the names of the climatic indices used by the best model (`regr_combo` holds their ids).
 
 ## Structure
 

@@ -34,7 +34,7 @@ def complete(request):
         # Creation of lists of vintages
         vintages = get_vintages_list(start_date, end_date)
         if vintages is None:
-            context['err_msg'] = "Dati sulle annate mancanti tra il " + start_date_str + " e il " + end_date_str
+            context['err_msg'] = "Missing vintage data between " + start_date_str + " and " + end_date_str
             return render(request, "MontalcinoForecastsApp/complete.html", context)
 
         # Data array creation
@@ -43,8 +43,8 @@ def complete(request):
 
         # Error if unable to get all data (all nan or all nan except one)
         if len(failed_regr_list) > 0:
-            err_msg = "Dati mancanti o non sufficienti tra il " + start_date_str + " e il " + end_date_str + \
-                                 " per poter calcolare i seguenti indici: "
+            err_msg = "Missing or insufficient data between " + start_date_str + " and " + end_date_str + \
+                                 " to compute the following indices: "
             for regr in failed_regr_list:
                 err_msg += regr + ", "
             context['err_msg'] = err_msg[:-2] + "."
@@ -52,12 +52,12 @@ def complete(request):
 
         # Error if no regressor was selected
         if len(regr_list) is 0:
-            context['err_msg'] = "Nessun indice selezionato"
+            context['err_msg'] = "No index selected"
             return render(request, "MontalcinoForecastsApp/complete.html", context)
 
         # Error if more regressors than data
         if len(vintages) <= len(regr_list):
-            err_msg = "Pochi anni e troppi regressori, impossibile usare la regressione lineare."
+            err_msg = "Too few years and too many regressors, linear regression cannot be used."
             context['err_msg'] = err_msg
             return render(request, "MontalcinoForecastsApp/complete.html", context)
 
@@ -70,7 +70,7 @@ def complete(request):
         # Chart and cards data creation
         chart = create_quality_chart(vintages, vin_pred)
         icons = get_icons(regr_combo)
-        table_data = list(zip(["Intercetta"] + regr_list, ["fas fa-chart-line"] + icons,
+        table_data = list(zip(["Intercept"] + regr_list, ["fas fa-chart-line"] + icons,
                               results.params, results.pvalues))
 
         # Update context
@@ -115,7 +115,7 @@ def ajax_get_best_regressors(request,stD='',stE=''):
     # Creation of lists of vintages and years
     vintages = get_vintages_list(start_date, end_date)
     if vintages is None:
-        err_msg = "Dati sulle annate mancanti tra il " + start_date_str + " e il " + end_date_str
+        err_msg = "Missing vintage data between " + start_date_str + " and " + end_date_str
         return JsonResponse({"err_msg": err_msg})
 
     # Get data for all the regressors
@@ -139,7 +139,7 @@ def ajax_get_best_regressors(request,stD='',stE=''):
 
     # Error if no data
     if len(dict_ids_values_regr) is 0:
-        err_msg = "Dati meteorologici mancanti tra il " + start_date_str + " e il " + end_date_str
+        err_msg = "Missing weather data between " + start_date_str + " and " + end_date_str
         return JsonResponse({"err_msg": err_msg})
 
     # Generate all combinations and run all the possible linear regressions
@@ -179,8 +179,8 @@ def ajax_get_best_regressors(request,stD='',stE=''):
 
     # Error if no match found
     if len(best_pvalues_models) is 0:
-        err_msg = "Impossibile determinare il miglior modello tra il " + start_date_str + " e il " + end_date_str + \
-                  ". Selezionare un altro range di date."
+        err_msg = "Unable to determine the best model between " + start_date_str + " and " + end_date_str + \
+                  ". Please select another date range."
         return JsonResponse({"err_msg": err_msg})
 
     # Return the results for the best 4 combinations
@@ -219,7 +219,7 @@ def ajax_get_forecast(request,startDate='',endDate='',regrcombo = []):
     # Make the prediction
     x, regr_list, failed_regr_list = get_data(start_forecast_date, end_forecast_date, regr_combo)
     if len(failed_regr_list) > 0:
-        err_msg = "Dati mancanti per l'anno " + request.POST.get('forecastYear') + " per i seguenti indici: "
+        err_msg = "Missing data for year " + request.POST.get('forecastYear') + " for the following indices: "
         for regr in failed_regr_list:
             err_msg += regr + ", "
         err_msg = err_msg[:-2] + "."

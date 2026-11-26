@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
 
   async getForecast(year) {
     const loading = await this.loadingController.create({
-      message: 'Scanning in corso...'
+      message: 'Scanning...'
     });
     this.http.request(year).subscribe(data => {
       console.log(data);
@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
   async showAlert(msg:any) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Errore',
+      header: 'Error',
       message: msg,
       buttons: ['OK']
     });
