@@ -1,31 +1,30 @@
 # Wine Scanner
 
-Proof of concept universitario: un'app mobile che scansiona il QR code di una bottiglia di Brunello di Montalcino e
-mostra la **qualità prevista dell'annata**, calcolata da un backend Django con un modello di regressione sui dati
-meteorologici.
+University proof of concept: a mobile app that scans the QR code on a bottle of Brunello di Montalcino and shows the
+**predicted quality of the vintage**, computed by a Django backend using a regression model on weather data.
 
 ```
 ┌──────────────────────┐   POST /WinePredictionREST/ajax/getForecast   ┌───────────────────────┐
 │ frontend/            │ ────────────────────────────────────────────► │ backend/              │
 │ Ionic + Angular      │ ◄──────────────────────────────────────────── │ Django + SQLite       │
-│ (browser/Android/iOS)│        qualità, R², regressori, meteo         │ statsmodels/sklearn   │
+│ (browser/Android/iOS)│        quality, R², regressors, weather       │ statsmodels/sklearn   │
 └──────────────────────┘                                               └───────────────────────┘
 ```
 
-| Cartella | Contenuto | Documentazione |
+| Folder | Contents | Documentation |
 |---|---|---|
-| [`backend/`](backend) | API REST Django e dati meteo/annate | [backend/README.md](backend/README.md) |
-| [`frontend/`](frontend) | App Ionic/Angular/Capacitor | [frontend/README.md](frontend/README.md) |
+| [`backend/`](backend) | Django REST API and weather/vintage data | [backend/README.md](backend/README.md) |
+| [`frontend/`](frontend) | Ionic/Angular/Capacitor app | [frontend/README.md](frontend/README.md) |
 
-## Avvio rapido
+## Quick start
 
-Servono Python 3.9–3.11 e Node.js 14/16.
+Requires Python 3.9–3.11 and Node.js 14/16.
 
 **Windows (PowerShell)**
 
 ```powershell
-.\scripts\setup.ps1     # venv Python, dipendenze, estrazione del DB, npm install
-.\scripts\start.ps1     # backend su :8000 e frontend su :4200
+.\scripts\setup.ps1     # Python venv, dependencies, DB extraction, npm install
+.\scripts\start.ps1     # backend on :8000 and frontend on :4200
 ```
 
 **Linux / macOS**
@@ -35,37 +34,37 @@ Servono Python 3.9–3.11 e Node.js 14/16.
 ./scripts/start.sh
 ```
 
-Poi apri <http://localhost:4200>, vai su **Scan** e inserisci un'annata (es. `2019`) – nel browser lo scanner della
-camera non è disponibile. Sul dispositivo si usa il vero scanner QR (vedi [frontend/README.md](frontend/README.md)).
+Then open <http://localhost:4200>, go to **Scan** and enter a vintage year (e.g. `2019`) – the camera scanner is not
+available in the browser. On a device the real QR scanner is used (see [frontend/README.md](frontend/README.md)).
 
-Se la porta 8000 è occupata avvia il backend su un'altra porta (`python manage.py runserver 8001`) e aggiorna `apiUrl`
-in [`frontend/src/environments/environment.ts`](frontend/src/environments/environment.ts).
+If port 8000 is already in use, start the backend on another port (`python manage.py runserver 8001`) and update
+`apiUrl` in [`frontend/src/environments/environment.ts`](frontend/src/environments/environment.ts).
 
-## Provenienza e storico
+## Origin and history
 
-Questo repository unisce in un unico progetto due repository nati come lavoro universitario (Università degli Studi di
-Firenze, 2019–2021), ospitati sull'account GitHub `ranfagnimattia`, collegato alla vecchia email universitaria
-`mattia.ranfagni@stud.unifi.it` (**non più attiva**):
+This repository merges two repositories created as university work (Università degli Studi di Firenze, 2019–2021),
+hosted under the GitHub account `ranfagnimattia`, which is tied to the old university email
+`mattia.ranfagni@stud.unifi.it` (**no longer active**):
 
 - Frontend: <https://github.com/ranfagnimattia/wine-scanner-front-end>
 - Backend: <https://github.com/ranfagnimattia/wine-scanner-back-end>
 
-I commit originali risultano firmati con la vecchia email, ormai disattivata: per questo l'autore va riconosciuto dal
-nome e dai repository sopra, non dall'indirizzo. La cronologia git originale non è stata importata qui; resta
-consultabile nei due repository.
+The original commits are signed with that now-deactivated email, so the author should be identified by name and by the
+repositories above rather than by the address. The original git history has not been imported here; it remains
+available in the two repositories.
 
-Il backend si basa su un progetto di analisi di serie storiche e anomaly detection (`VineyardsDataAnalysis` / `WineApp`)
-sviluppato da [Lorenzo-N](https://github.com/Lorenzo-N) e [Andrea Puccia](https://github.com/AndreaPuccia), a cui
-Mattia Ranfagni ha aggiunto le app `MontalcinoForecastsApp` e `WinePredictionREST` e il frontend mobile.
+The backend builds on a time-series analysis and anomaly detection project (`VineyardsDataAnalysis` / `WineApp`)
+developed by [Lorenzo-N](https://github.com/Lorenzo-N) and [Andrea Puccia](https://github.com/AndreaPuccia), to which
+Mattia Ranfagni added the `MontalcinoForecastsApp` and `WinePredictionREST` apps and the mobile frontend.
 
-### Modifiche rispetto agli originali
+### Changes from the originals
 
-- Struttura monorepo (`backend/`, `frontend/`), rimossi file IDE, cache Python e `requisiti.txt` (duplicato).
-- Backend: dipendenze aggiornate e svincolate da TensorFlow 1.14 (ora opzionale, vedi `requirements-ml.txt`),
-  compatibile con Python 3.9–3.11 e Django 3.2; `SECRET_KEY`, `DEBUG` e host configurabili da variabili d'ambiente;
-  database distribuito compresso (`WineDB.sqlite3.gz`).
-- Frontend: URL del backend spostato in `environment.ts` (prima era un IP LAN hardcoded), inserimento manuale
-  dell'annata quando lo scanner non è disponibile (browser), traffico HTTP in chiaro abilitato su Android.
+- Monorepo layout (`backend/`, `frontend/`); removed IDE files, Python caches and `requisiti.txt` (a duplicate).
+- Backend: updated dependencies, decoupled from TensorFlow 1.14 (now optional, see `requirements-ml.txt`),
+  compatible with Python 3.9–3.11 and Django 3.2; `SECRET_KEY`, `DEBUG` and allowed hosts configurable through
+  environment variables; database shipped compressed (`WineDB.sqlite3.gz`).
+- Frontend: backend URL moved to `environment.ts` (it was a hardcoded LAN IP), manual vintage-year entry when the
+  scanner is unavailable (browser), cleartext HTTP traffic enabled on Android.
 
-Il database contiene anche i dati dell'app d'amministrazione Django originale (utenti, sessioni, log): è materiale
-di sviluppo, non usare quegli account in produzione.
+The database also contains the original Django admin data (users, sessions, logs): it is development material, do not
+reuse those accounts in production.

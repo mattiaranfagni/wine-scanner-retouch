@@ -1,9 +1,9 @@
 # Backend – Django
 
-REST API che calcola la previsione di qualità di un'annata di Brunello di Montalcino a partire dai dati
-meteorologici giornalieri (regressione lineare con selezione dei migliori regressori climatici).
+REST API that predicts the quality of a Brunello di Montalcino vintage from daily weather data (linear regression with
+selection of the best climatic regressors).
 
-L'app mobile chiama un solo endpoint:
+The mobile app calls a single endpoint:
 
 ```
 POST /WinePredictionREST/ajax/getForecast
@@ -12,24 +12,26 @@ Content-Type: application/x-www-form-urlencoded
 startDate=01/01/2006&endDate=01/01/2019&forecastYear=2019
 ```
 
-Risposta (esempio):
+Response (example):
 
 ```json
 {"quality": 5.26, "r2_adj": 0.22, "regr_combo": [4, 6, 10], "regr_list": ["..."],
  "umidlugott": 64.48, "umidaprott": 67.61, "ventoaprott": 0.94}
 ```
 
-## Struttura
+(`regr_list` entries are Italian labels, e.g. "Umidità media tra aprile e ottobre".)
 
-| App Django | Ruolo |
+## Structure
+
+| Django app | Role |
 |---|---|
-| `WinePredictionREST` | Endpoint REST usato dall'app mobile |
-| `MontalcinoForecastsApp` | Modelli e logica di previsione (indici climatici, regressori, annate) |
-| `WineApp` | Modelli dei dati meteo (giornalieri/orari) e dashboard di anomaly detection (non esposta di default) |
+| `WinePredictionREST` | REST endpoint used by the mobile app |
+| `MontalcinoForecastsApp` | Models and forecasting logic (climatic indices, regressors, vintages) |
+| `WineApp` | Weather data models (daily/hourly) and anomaly-detection dashboard (not exposed by default) |
 
-## Avvio
+## Running
 
-Serve Python 3.9–3.11 (pandas 1.x / numpy 1.x non hanno wheel per versioni più recenti).
+Requires Python 3.9–3.11 (pandas 1.x / numpy 1.x have no wheels for newer versions).
 
 ```powershell
 python -m venv .venv
@@ -38,35 +40,35 @@ pip install -r requirements.txt
 python manage.py runserver 0.0.0.0:8000
 ```
 
-Il database SQLite (`WineDB.sqlite3`, ~100 MB, già popolato con dati meteo e annate) è versionato in forma
-compressa come `WineDB.sqlite3.gz` perché supera il limite di GitHub per i singoli file. Estrailo prima del
-primo avvio (gli script in `../scripts` lo fanno in automatico):
+The SQLite database (`WineDB.sqlite3`, ~100 MB, already populated with weather data and vintages) is stored compressed
+as `WineDB.sqlite3.gz` because it exceeds GitHub's per-file size limit. Extract it before the first run (the scripts in
+`../scripts` do this automatically):
 
 ```powershell
 python -c "import gzip,shutil; shutil.copyfileobj(gzip.open('WineDB.sqlite3.gz'), open('WineDB.sqlite3','wb'))"
 ```
 
-## Configurazione
+## Configuration
 
-Variabili d'ambiente opzionali:
+Optional environment variables:
 
-| Variabile | Default | Descrizione |
+| Variable | Default | Description |
 |---|---|---|
-| `DJANGO_SECRET_KEY` | chiave di sviluppo | Da impostare fuori dallo sviluppo locale |
-| `DJANGO_DEBUG` | `True` | Con `True` qualsiasi host è accettato (utile per test da telefono in LAN) |
-| `DJANGO_ALLOWED_HOSTS` | – | Host aggiuntivi separati da virgola, usati con `DJANGO_DEBUG=False` |
+| `DJANGO_SECRET_KEY` | development key | Set it for anything other than local development |
+| `DJANGO_DEBUG` | `True` | When `True` any host is accepted (handy for testing from a phone on the LAN) |
+| `DJANGO_ALLOWED_HOSTS` | – | Extra comma-separated hosts, used with `DJANGO_DEBUG=False` |
 
-## Dashboard di anomaly detection (opzionale)
+## Anomaly-detection dashboard (optional)
 
-`WineApp` contiene una dashboard (indici, dati giornalieri/orari, anomalie) basata su LSTM, mantenuta nel codice ma
-**non collegata** in `VineyardsDataAnalysis/urls.py`. Per riattivarla servono le dipendenze di
-`requirements-ml.txt` (TensorFlow/Keras, `stldecompose`) e il ripristino della riga `WineApp/` in `urls.py`.
-Il codice è stato scritto per TensorFlow 1.14 / Keras 2.2: con versioni moderne potrebbero servire adattamenti, e i
-modelli `.h5` in `WineApp/data/LSTM` potrebbero non caricarsi senza modifiche.
+`WineApp` contains an LSTM-based dashboard (indices, daily/hourly data, anomalies) that is kept in the code but **not
+wired** in `VineyardsDataAnalysis/urls.py`. To re-enable it you need the dependencies in `requirements-ml.txt`
+(TensorFlow/Keras, `stldecompose`) and to restore the `WineApp/` line in `urls.py`. The code was written for
+TensorFlow 1.14 / Keras 2.2: with modern versions some adaptation may be needed, and the `.h5` models in
+`WineApp/data/LSTM` may fail to load unchanged.
 
-## Crediti
+## Credits
 
-La base del backend (`VineyardsDataAnalysis`: app `WineApp`, analisi di serie storiche e anomaly detection) è stata
-sviluppata da [Lorenzo-N](https://github.com/Lorenzo-N) e [Andrea Puccia](https://github.com/AndreaPuccia).
-`MontalcinoForecastsApp` e `WinePredictionREST` sono stati aggiunti nel 2021 da Mattia Ranfagni per il progetto Wine Scanner.
-Provenienza del codice: vedi il [README principale](../README.md#provenienza-e-storico).
+The backend foundation (`VineyardsDataAnalysis`: the `WineApp` app, time-series analysis and anomaly detection) was
+developed by [Lorenzo-N](https://github.com/Lorenzo-N) and [Andrea Puccia](https://github.com/AndreaPuccia).
+`MontalcinoForecastsApp` and `WinePredictionREST` were added in 2021 by Mattia Ranfagni for the Wine Scanner project.
+Code origin: see the [main README](../README.md#origin-and-history).
