@@ -9,3 +9,17 @@ frontend/www/
 backend/MontalcinoForecastsApp/static/MontalcinoForecastsApp/lib
 backend/WineApp
 backend/WineDB.sqlite3.gz
+scripts/start.sh
+backend/MontalcinoForecastsApp/static/MontalcinoForecastsApp/img/cd-top-arrow.svg
+backend/MontalcinoForecastsApp/static/MontalcinoForecastsApp/img/spinner.svg
+backend/MontalcinoForecastsApp/static/MontalcinoForecastsApp/js/simplified.js
+frontend/package-lock.json
+frontend/README.md
+scripts/setup.ps1
+scripts/setup.sh
+scripts/start.ps1
+frontend/resources
+frontend/ios
+frontend/android
+frontend/e2e
+backend/static
