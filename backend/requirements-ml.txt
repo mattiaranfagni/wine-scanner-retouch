@@ -1,0 +1,6 @@
+# Optional: only needed for the anomaly-detection dashboards in WineApp
+# (WineApp/data/algorithms.py), which are not exposed by the default URL config.
+-r requirements.txt
+stldecompose==0.0.5
+tensorflow>=2.4,<2.16
+keras>=2.4,<2.16

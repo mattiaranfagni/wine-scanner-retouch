@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+WineDB.sqlite3
+WineDB.sqlite3-journal
+node_modules/
+frontend/www/
+.idea/
+backend/MontalcinoForecastsApp/static/MontalcinoForecastsApp/lib
+backend/WineApp
+backend/WineDB.sqlite3.gz
