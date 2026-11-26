@@ -56,7 +56,7 @@ consultabile nei due repository.
 
 Il backend si basa su un progetto di analisi di serie storiche e anomaly detection (`VineyardsDataAnalysis` / `WineApp`)
 sviluppato da [Lorenzo-N](https://github.com/Lorenzo-N) e [Andrea Puccia](https://github.com/AndreaPuccia), a cui
-Mattia Ranfagni ha aggiunto le app `MontalcinoForecastsApp` e `WinePredictionREST` e il frontend mobile.
+ho aggiunto le app `MontalcinoForecastsApp` e `WinePredictionREST` e il frontend mobile.
 
 ### Modifiche rispetto agli originali
 
