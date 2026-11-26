@@ -1,9 +1,7 @@
 <ion-header>
-  <nav class="red darken-4">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Favourites</a>
-    </div>
-  </nav>
+  <ion-toolbar color="primary">
+    <ion-title>Favourites</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="refresh($event)">
