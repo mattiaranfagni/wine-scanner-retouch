@@ -149,20 +149,10 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-
-  .ios body.dark {
-    @include ios-dark;
-  }
-
-  .md body.dark {
-    @include md-dark;
-  }
+.ios body.dark {
+  @include ios-dark;
 }
-  .ios body.dark {
-    @include ios-dark;
-  }
 
-  .md body.dark {
-    @include md-dark;
-  }
+.md body.dark {
+  @include md-dark;
+}

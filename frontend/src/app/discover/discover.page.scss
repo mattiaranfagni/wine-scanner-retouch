@@ -1,0 +1,7 @@
+ion-content {
+  --background: url('../../assets/img/vineyard-bg.jpg') center / cover no-repeat;
+}
+
+ion-card {
+  --background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.9);
+}
